@@ -50,11 +50,12 @@ function App() {
     <>
       <Nav dark={t.dark} onToggleDark={() => setTweak('dark', !t.dark)} />
       <Hero />
-      <CoreStrengths />
+      <TechnicalExperience />
       <Projects />
+      <CoreStrengths />
       <Skills />
       <Education />
-      <Experience />
+      <AdditionalExperience />
       <Contact />
       <Footer />
 

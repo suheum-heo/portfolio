@@ -1,5 +1,5 @@
 // portfolio-sections.jsx
-// Page sections — Nav, Hero, Strengths, Featured, Projects, Skills, Experience, Contact
+// Page sections — Nav, Hero, Experience, Projects, Strengths, Skills, Education, Contact
 
 function Nav({ dark, onToggleDark }) {
   return (
@@ -10,10 +10,10 @@ function Nav({ dark, onToggleDark }) {
           <span>Suheum&nbsp;Heo</span>
         </a>
         <div className="nav-links">
+          <a className="nav-link" href="#experience">Experience</a>
           <a className="nav-link" href="#work">Work</a>
           <a className="nav-link" href="#skills">Skills</a>
           <a className="nav-link" href="#education">Education</a>
-          <a className="nav-link" href="#experience">Experience</a>
           <a className="nav-link" href="#contact">Contact</a>
           <button className="nav-link nav-cta btn btn-sm btn-ghost" onClick={onToggleDark}
                   aria-label="Toggle theme" title="Toggle theme">
@@ -35,7 +35,7 @@ function Hero() {
         <div>
           <div className="hero-status">
             <span className="ping"></span>
-            <span>Open to SWE / Data internships · Summer 2026</span>
+            <span>Summer 2026 R&amp;D Internship · Dassault Systèmes</span>
           </div>
           <h1 className="hero-title">
             I build <em>data-driven</em><br/>
@@ -43,7 +43,8 @@ function Hero() {
           </h1>
           <p className="hero-sub">
             Suheum Heo — Computer Science &amp; Data Science at the University of Wisconsin–Madison.
-            I design and ship full-stack apps, data pipelines, and grounded LLM tools.
+            I build full-stack apps, data pipelines, and grounded AI tools — most recently an
+            in-vehicle voice-assistant prototype at Dassault Systèmes Korea.
           </p>
           <div className="hero-cta">
             <a className="btn btn-lg btn-primary" href="#work">
@@ -65,7 +66,7 @@ function Hero() {
 
       <div className="hero-stats">
         <div className="hero-stat">
-          <div className="hero-stat-n">8</div>
+          <div className="hero-stat-n">9</div>
           <div className="hero-stat-l">Shipped projects</div>
         </div>
         <div className="hero-stat">
@@ -73,8 +74,8 @@ function Hero() {
           <div className="hero-stat-l">Majors · CS + DS</div>
         </div>
         <div className="hero-stat">
-          <div className="hero-stat-n">14</div>
-          <div className="hero-stat-l">Languages &amp; tools</div>
+          <div className="hero-stat-n">iOS</div>
+          <div className="hero-stat-l">Internship product prototype</div>
         </div>
         <div className="hero-stat">
           <div className="hero-stat-n">EN/KR</div>
@@ -93,12 +94,12 @@ function CodePanel() {
     { n: 4,  c: <>{'  '}role=<span className="str">"SWE · Data · AI"</span>,</> },
     { n: 5,  c: <>{'  '}school=<span className="str">"UW–Madison"</span>,</> },
     { n: 6,  c: <>{'  '}majors=[<span className="str">"CS"</span>, <span className="str">"Data Science"</span>],</> },
-    { n: 7,  c: <>{'  '}stack=[<span className="str">"Python"</span>, <span className="str">"TS"</span>, <span className="str">"SQL"</span>],</> },
-    { n: 8,  c: <>{'  '}interests=[<span className="str">"LLM agents"</span>, <span className="str">"quant"</span>],</> },
+    { n: 7,  c: <>{'  '}stack=[<span className="str">"Python"</span>, <span className="str">"TS"</span>, <span className="str">"Swift"</span>],</> },
+    { n: 8,  c: <>{'  '}recent=<span className="str">"Dassault Systèmes"</span>,</> },
     { n: 9,  c: <>)</> },
     { n: 10, c: <></> },
-    { n: 11, c: <><span className="com"># 2026 — open to internships</span></> },
-    { n: 12, c: <>me.available_from(<span className="num">2026</span>)</> },
+    { n: 11, c: <><span className="com"># iOS · Korean STT/TTS · retrieval</span></> },
+    { n: 12, c: <>me.prototype(<span className="str">"in_vehicle_voice"</span>)</> },
   ];
   return (
     <div className="hero-panel" aria-hidden="true">
@@ -223,7 +224,7 @@ function CompactProject({ p }) {
         <div className="project-foot">
           <div className="project-links">
             <a className="link-ext" href={p.repo} target="_blank" rel="noopener"><I.github size={14}/> Code <I.ext/></a>
-            <a className="link-ext" href={p.demo} target="_blank" rel="noopener">Demo <I.ext/></a>
+            {p.demo && <a className="link-ext" href={p.demo} target="_blank" rel="noopener">Demo <I.ext/></a>}
           </div>
         </div>
       </div>
@@ -237,7 +238,7 @@ function Projects() {
       <div className="section-hd">
         <div>
           <div className="eyebrow">Selected work</div>
-          <h2 className="section-title">Eight projects, end to end.</h2>
+          <h2 className="section-title">Nine projects, end to end.</h2>
         </div>
         <p className="section-sub">
           Each took a real problem, made decisions about scope, and shipped something I'd defend in a code review.
@@ -273,7 +274,7 @@ function Skills() {
           <h2 className="section-title">The tools I reach for.</h2>
         </div>
         <p className="section-sub">
-          Grouped by where they sit in the stack. Bold-faced items are what I've shipped to production-style projects.
+          Grouped by where they sit in the stack, from product interfaces to real-time services and analytics.
         </p>
       </div>
       <div className="skills">
@@ -332,36 +333,60 @@ function Education() {
   );
 }
 
-function Experience() {
+function ExperienceTimeline({ entries }) {
   return (
-    <section id="experience" className="container section" data-screen-label="Experience">
-      <div className="section-hd">
-        <div>
-          <div className="eyebrow">Experience</div>
-          <h2 className="section-title">Work history.</h2>
-        </div>
-        <p className="section-sub">
-          Non-technical roles held alongside coursework. Each taught me something about responsibility, communication, or operating under pressure.
-        </p>
-      </div>
-      <div className="timeline">
-        {EXPERIENCE.map((e, i) => (
-          <div className="timeline-row timeline-row-compact" key={i}>
-            <div className="timeline-when">
-              <span className="yr">{e.when.yr}</span>
-              <span>{e.when.loc}</span>
-            </div>
-            <div className="timeline-card">
-              <h3 className="timeline-role" style={{ fontSize: 'var(--fs-body)' }}>{e.role}</h3>
-              <div className="timeline-place">{e.place}</div>
-              <p className="timeline-desc">{e.desc}</p>
-              <div className="timeline-tags">
-                {e.tags.map((t) => <span key={t} className="badge">{t}</span>)}
-              </div>
+    <div className="timeline">
+      {entries.map((e, i) => (
+        <div className="timeline-row timeline-row-compact" key={i}>
+          <div className="timeline-when">
+            <span className="yr">{e.when.yr}</span>
+            {e.when.yr2 && <span className="yr">{e.when.yr2}</span>}
+            <span>{e.when.loc}</span>
+          </div>
+          <div className="timeline-card">
+            <h3 className="timeline-role" style={{ fontSize: 'var(--fs-body)' }}>{e.role}</h3>
+            <div className="timeline-place">{e.place}</div>
+            <p className="timeline-desc">{e.desc}</p>
+            <div className="timeline-tags">
+              {e.tags.map((t) => <span key={t} className="badge">{t}</span>)}
             </div>
           </div>
-        ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function TechnicalExperience() {
+  return (
+    <section id="experience" className="container section" data-screen-label="Technical Experience">
+      <div className="section-hd">
+        <div>
+          <div className="eyebrow">Technical experience</div>
+          <h2 className="section-title">Dassault Systèmes Korea.</h2>
+        </div>
+        <p className="section-sub">
+          Professional R&amp;D experience building and validating an iOS voice-assistant prototype in a customer-facing environment.
+        </p>
       </div>
+      <ExperienceTimeline entries={EXPERIENCE.slice(0, 1)} />
+    </section>
+  );
+}
+
+function AdditionalExperience() {
+  return (
+    <section id="additional-experience" className="container section" data-screen-label="Additional Experience">
+      <div className="section-hd">
+        <div>
+          <div className="eyebrow">Additional experience</div>
+          <h2 className="section-title">Leadership beyond engineering.</h2>
+        </div>
+        <p className="section-sub">
+          High-volume operations and public service shaped how I lead, communicate, and stay composed under pressure.
+        </p>
+      </div>
+      <ExperienceTimeline entries={EXPERIENCE.slice(1)} />
     </section>
   );
 }
@@ -378,7 +403,7 @@ function Contact() {
             Recruiting for SWE, data, or AI? Let's talk.
           </h2>
           <p className="contact-sub">
-            Open to summer 2026 internships and longer co-op programs. I respond within a day.
+            Interested in software, data, and AI opportunities leading into May 2027 graduation. I respond within a day.
           </p>
           <div style={{ display: 'flex', gap: 'var(--sp-3)', marginTop: 'var(--sp-6)', flexWrap: 'wrap' }}>
             <a className="btn btn-lg btn-primary" href="mailto:sh02hur@gmail.com">
@@ -388,7 +413,7 @@ function Contact() {
               <I.download size={15}/> Résumé (PDF)
             </a>
           </div>
-          <div style={{ display: 'flex', gap: 'var(--sp-4)', marginTop: 'var(--sp-6)' }}>
+          <div style={{ display: 'flex', gap: 'var(--sp-4)', marginTop: 'var(--sp-6)', flexWrap: 'wrap' }}>
             <a className="link-ext" href="https://github.com/suheum-heo" target="_blank" rel="noopener"><I.github size={14}/> github.com/suheum-heo <I.ext/></a>
             <a className="link-ext" href="https://www.linkedin.com/in/suheum-heo/" target="_blank" rel="noopener"><I.linkedin size={14}/> linkedin.com/in/suheum-heo <I.ext/></a>
           </div>
@@ -405,7 +430,7 @@ function Contact() {
           </div>
           <div className="form-row">
             <label>Message</label>
-            <textarea placeholder="Hi Suheum — we're hiring SWE interns for Summer 2026…"/>
+            <textarea placeholder="Hi Suheum — we're hiring software engineers for 2027…"/>
           </div>
           <button className="btn btn-accent" type="submit">
             Send message <I.arrow size={14} className="arrow"/>
@@ -433,5 +458,5 @@ function Footer() {
 }
 
 Object.assign(window, {
-  Nav, Hero, CoreStrengths, Projects, Skills, Education, Experience, Contact, Footer,
+  Nav, Hero, TechnicalExperience, Projects, CoreStrengths, Skills, Education, AdditionalExperience, Contact, Footer,
 });

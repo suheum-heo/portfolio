@@ -107,6 +107,43 @@ function VizStock() {
   );
 }
 
+function VizVibeTerminal() {
+  // Vibe Terminal — real-time cross-exchange premium + risk monitor
+  const bids = [72, 58, 48, 36, 28];
+  const asks = [30, 39, 50, 61, 76];
+  return (
+    <div className="viz">
+      <div className="viz-hd"><span>Vibe Terminal · BTC/KRW</span><span>live signal</span></div>
+      <svg viewBox="0 0 320 150">
+        {[35, 65, 95, 125].map((y) => (
+          <line key={y} x1="16" x2="304" y1={y} y2={y}
+                stroke="currentColor" strokeOpacity=".08"/>
+        ))}
+        <g fontFamily="var(--font-mono)" fontSize="8.5" fill="var(--fg-muted)">
+          {bids.map((w, i) => (
+            <g key={`bid-${i}`}>
+              <rect x={150 - w} y={24 + i * 19} width={w} height="12" rx="2"
+                    fill="var(--semantic-success)" opacity={0.22 + i * 0.08}/>
+              <text x="145" y={33 + i * 19} textAnchor="end">{(1.8 - i * .11).toFixed(2)}</text>
+            </g>
+          ))}
+          {asks.map((w, i) => (
+            <g key={`ask-${i}`}>
+              <rect x="170" y={24 + i * 19} width={w} height="12" rx="2"
+                    fill="var(--semantic-danger)" opacity={0.22 + i * 0.08}/>
+              <text x="175" y={33 + i * 19}>{(1.91 + i * .09).toFixed(2)}</text>
+            </g>
+          ))}
+          <text x="16" y="143">BITHUMB</text>
+          <text x="160" y="143" textAnchor="middle" fill="var(--accent)">NET +1.42%</text>
+          <text x="304" y="143" textAnchor="end">BYBIT</text>
+        </g>
+        <line x1="160" x2="160" y1="16" y2="132" stroke="var(--accent)" strokeOpacity=".45"/>
+      </svg>
+    </div>
+  );
+}
+
 function VizCourse() {
   // Calendar / planner grid
   return (
@@ -251,7 +288,7 @@ function VizInsights() {
         <g fontFamily="var(--font-mono)" fontSize="9" fill="var(--fg-muted)">
           <text x="22" y="144">'88</text>
           <text x="305" y="144" textAnchor="end">'24</text>
-          <text x={x0 + peakIdx * (barW + gap) + barW + 4} y="22" fill="var(--accent)">2021 · 7,334 units</text>
+          <text x="305" y="22" textAnchor="end" fill="var(--accent)">2021 · 7,334 units</text>
         </g>
       </svg>
     </div>
@@ -318,8 +355,8 @@ const STRENGTHS = [
   {
     icon: 'product',
     title: 'Full-stack product',
-    desc: 'Ship end-to-end apps with React, Next.js, Node, and Postgres — from auth to deploy.',
-    tags: ['Next.js', 'React', 'Postgres'],
+    desc: 'Ship end-to-end web and iOS products — from interface and service design through testing and deploy.',
+    tags: ['Next.js', 'React', 'SwiftUI'],
   },
   {
     icon: 'data',
@@ -330,8 +367,8 @@ const STRENGTHS = [
   {
     icon: 'ai',
     title: 'AI / LLM systems',
-    desc: 'Design grounded LLM agents — retrieval, structured output, evals, and guardrails.',
-    tags: ['Claude API', 'RAG', 'Evals'],
+    desc: 'Build grounded AI experiences across retrieval, voice interfaces, structured output, and guardrails.',
+    tags: ['Claude API', 'Retrieval', 'STT / TTS'],
   },
   {
     icon: 'code',
@@ -377,6 +414,14 @@ const FEATURED = [
 ];
 
 const PROJECTS = [
+  {
+    title: 'Vibe Terminal',
+    type: 'Real-Time Systems',
+    summary: 'Real-time crypto signal terminal monitoring Bithumb, Bybit, and KRW/USDT markets. Evaluates VWAP, order-book depth, slippage, spread, and wallet risk before sending actionable Telegram alerts.',
+    Viz: VizVibeTerminal,
+    stack: ['FastAPI', 'React', 'PostgreSQL', 'Redis', 'WebSockets', 'Docker'],
+    repo: 'https://github.com/suheum-heo/vibe-terminal',
+  },
   {
     title: 'ScoutEdge',
     type: 'AI',
@@ -434,22 +479,22 @@ const SKILLS = [
     key: 'lang',
     title: 'Languages',
     icon: 'lang',
-    tag: '06',
-    items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'SQL', 'R'],
+    tag: '07',
+    items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'Swift', 'SQL', 'R'],
   },
   {
     key: 'front',
     title: 'Frontend',
     icon: 'front',
-    tag: '04',
-    items: ['React', 'Next.js', 'Tailwind CSS', 'Streamlit'],
+    tag: '05',
+    items: ['React', 'Next.js', 'SwiftUI', 'Tailwind CSS', 'Streamlit'],
   },
   {
     key: 'back',
     title: 'Backend & Data',
     icon: 'back',
-    tag: '11',
-    items: ['Node.js', 'Express', 'Flask', 'FastAPI', 'Django', 'PostgreSQL', 'SQLite', 'Prisma', 'SQLAlchemy', 'Supabase', 'Redis'],
+    tag: '15',
+    items: ['Node.js', 'Express', 'Flask', 'FastAPI', 'Django', 'PostgreSQL', 'SQLite', 'Prisma', 'SQLAlchemy', 'Supabase', 'Redis', 'WebSockets', 'Docker', 'DuckDB', 'Parquet'],
   },
   {
     key: 'ai',
@@ -488,18 +533,18 @@ const EDUCATION = [
 
 const EXPERIENCE = [
   {
-    when: { yr: 'Dec 2025 — Present', loc: 'Madison, WI' },
-    role: 'Cashier',
-    place: 'Four Lakes Market · Dejope Hall, UW–Madison',
-    desc: 'Handle 200+ daily cash and card transactions in a fast-paced university dining environment while maintaining a full CS + DS course load.',
-    tags: ['Customer service', 'Bilingual delivery'],
+    when: { yr: 'Jul 2026 — Aug 2026', loc: 'Seoul, South Korea' },
+    role: 'R&D Customer Success Intern',
+    place: 'Dassault Systèmes Korea',
+    desc: 'Developed an iOS proof-of-concept for an in-vehicle voice assistant combining Korean speech-to-text, text-to-speech, and internal knowledge retrieval. Built and validated the SwiftUI prototype with WebView and a mock service layer through physical-device testing, while supporting customer-facing R&D issue tracking and cross-functional communication.',
+    tags: ['SwiftUI', 'iOS', 'STT / TTS', 'Knowledge retrieval', 'Customer R&D'],
   },
   {
-    when: { yr: 'Nov 2024 — Jul 2025', loc: 'Madison, WI' },
-    role: 'Culinary Assistant & Shift Lead',
-    place: 'Liz\u2019s Market · Waters Hall, UW–Madison',
-    desc: 'Supervised a team of 5–8 kitchen staff in a high-volume dining facility serving 500+ meals daily. Trained 10+ new employees on safety protocols and workflow optimization.',
-    tags: ['Team lead', 'Operations'],
+    when: { yr: 'Nov 2024 — Jul 2025', yr2: 'Dec 2025 — Present', loc: 'Madison, WI' },
+    role: 'Dining Operations · Cashier & Shift Lead',
+    place: 'UW–Madison University Housing · Four Lakes + Liz’s Market',
+    desc: 'Currently handle 200+ daily transactions as a cashier at Four Lakes Market. Previously supervised 5–8 staff serving 500+ meals daily at Liz’s Market and trained 10+ employees on safety protocols and workflow optimization.',
+    tags: ['Team lead', 'High-volume operations', 'Customer service'],
   },
   {
     when: { yr: 'Oct 2022 — Jul 2024', loc: 'Ulsan, South Korea' },
