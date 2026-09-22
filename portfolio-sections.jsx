@@ -50,7 +50,7 @@ function Hero() {
             <a className="btn btn-lg btn-primary" href="#work">
               View featured work <I.arrow size={15} className="arrow"/>
             </a>
-            <a className="btn btn-lg btn-secondary" href="Suheum_Heo_Resume.pdf" target="_blank" rel="noopener" download>
+            <a className="btn btn-lg btn-secondary" href="Suheum_Heo_Resume.pdf?v=20260922e" target="_blank" rel="noopener" download>
               <I.download size={15}/> Download résumé
             </a>
           </div>
@@ -428,7 +428,7 @@ function Contact() {
             <a className="btn btn-lg btn-primary" href="mailto:sh02hur@gmail.com">
               <I.email size={15}/> sh02hur@gmail.com
             </a>
-            <a className="btn btn-lg btn-secondary" href="Suheum_Heo_Resume.pdf" target="_blank" rel="noopener" download>
+            <a className="btn btn-lg btn-secondary" href="Suheum_Heo_Resume.pdf?v=20260922e" target="_blank" rel="noopener" download>
               <I.download size={15}/> Résumé (PDF)
             </a>
           </div>
@@ -469,7 +469,7 @@ function Footer() {
         <div className="links">
           <a href="https://github.com/suheum-heo" target="_blank" rel="noopener">GitHub</a>
           <a href="https://www.linkedin.com/in/suheum-heo/" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="Suheum_Heo_Resume.pdf" target="_blank" rel="noopener" download>Résumé</a>
+          <a href="Suheum_Heo_Resume.pdf?v=20260922e" target="_blank" rel="noopener" download>Résumé</a>
           <a href="mailto:sh02hur@gmail.com">Email</a>
         </div>
       </div>
