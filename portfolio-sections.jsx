@@ -394,6 +394,25 @@ function AdditionalExperience() {
 // ─────────────────────────────────────────────────────────────
 
 function Contact() {
+  const handleContactSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const message = String(data.get('message') || '').trim();
+    const subject = `Portfolio inquiry from ${name}`;
+    const body = [
+      'Hi Suheum,',
+      '',
+      message,
+      '',
+      `From: ${name}`,
+      `Reply to: ${email}`,
+    ].join('\n');
+
+    window.location.href = `mailto:sh02hur@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   return (
     <section id="contact" className="container section" data-screen-label="Contact">
       <div className="contact">
@@ -419,22 +438,23 @@ function Contact() {
           </div>
         </div>
 
-        <form className="card contact-card" onSubmit={(e) => e.preventDefault()}>
+        <form className="card contact-card" onSubmit={handleContactSubmit}>
           <div className="form-row">
-            <label>Name</label>
-            <input type="text" placeholder="Jane Recruiter"/>
+            <label htmlFor="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" placeholder="Jane Recruiter" required/>
           </div>
           <div className="form-row">
-            <label>Email</label>
-            <input type="email" placeholder="jane@company.com"/>
+            <label htmlFor="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" placeholder="jane@company.com" required/>
           </div>
           <div className="form-row">
-            <label>Message</label>
-            <textarea placeholder="Hi Suheum — we're hiring software engineers for 2027…"/>
+            <label htmlFor="contact-message">Message</label>
+            <textarea id="contact-message" name="message" placeholder="Hi Suheum — we're hiring software engineers for 2027…" required/>
           </div>
           <button className="btn btn-accent" type="submit">
-            Send message <I.arrow size={14} className="arrow"/>
+            Open email draft <I.arrow size={14} className="arrow"/>
           </button>
+          <p className="form-note">Opens a prefilled draft in your email app. You review it before sending.</p>
         </form>
       </div>
     </section>
