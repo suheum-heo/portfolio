@@ -66,7 +66,7 @@ function Hero() {
 
       <div className="hero-stats">
         <div className="hero-stat">
-          <div className="hero-stat-n">9</div>
+          <div className="hero-stat-n">{FEATURED.length + PROJECTS.length}</div>
           <div className="hero-stat-l">Shipped projects</div>
         </div>
         <div className="hero-stat">
@@ -238,7 +238,7 @@ function Projects() {
       <div className="section-hd">
         <div>
           <div className="eyebrow">Selected work</div>
-          <h2 className="section-title">Nine projects, end to end.</h2>
+          <h2 className="section-title">{FEATURED.length + PROJECTS.length} projects, end to end.</h2>
         </div>
         <p className="section-sub">
           Each took a real problem, made decisions about scope, and shipped something I'd defend in a code review.

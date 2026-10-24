@@ -144,6 +144,23 @@ function VizVibeTerminal() {
   );
 }
 
+function VizMiniRedis() {
+  const lines = ['> SET greeting hello', '+OK', '> GET greeting', 'hello', '> INCR visits', ':1'];
+  return (
+    <div className="viz">
+      <div className="viz-hd"><span>MiniRedis · RESP2 / TCP</span><span>Oct 2026</span></div>
+      <svg viewBox="0 0 320 150" role="img" aria-label="Example MiniRedis commands and responses">
+        <g fontFamily="var(--font-mono)" fontSize="11">
+          {lines.map((line, i) => (
+            <text key={i} x="22" y={24 + i * 22}
+                  fill={i % 2 === 0 ? 'var(--fg-muted)' : 'var(--accent)'}>{line}</text>
+          ))}
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 function VizCourse() {
   // Calendar / planner grid
   return (
@@ -414,6 +431,14 @@ const FEATURED = [
 ];
 
 const PROJECTS = [
+  {
+    title: 'MiniRedis',
+    type: 'Systems / Backend',
+    summary: 'Redis-inspired C++20 database with 11 RESP2 commands, a bounded worker pool, thread-safe storage, TTL expiration, and CRC-checked snapshots using fsync and atomic rename. Passed 48/48 tests under ThreadSanitizer and separately under ASan/UBSan. Measured 139k GET ops/s vs Redis at 152k in one localhost run (4 clients, 40k requests, no pipelining, persistence off).',
+    Viz: VizMiniRedis,
+    stack: ['C++20', 'POSIX sockets', 'CMake', 'GoogleTest', 'RESP2', 'GitHub Actions'],
+    repo: 'https://github.com/suheum-heo/miniredis-cpp',
+  },
   {
     title: 'Vibe Terminal',
     type: 'Real-Time Systems',
